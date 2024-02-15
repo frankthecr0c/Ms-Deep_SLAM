@@ -25,9 +25,9 @@
 #include "SPmatcher.h"
 #include "G2oTypes.h"
 
-#include<mutex>
-#include<thread>
-
+#include <mutex>
+#include <thread>
+#include <chrono>
 
 namespace ORB_SLAM3
 {
@@ -465,6 +465,12 @@ bool LoopClosing::NewDetectCommonRegions()
 
     // Check the BoW candidates if the geometric candidate list is empty
     //Loop candidates
+/*#ifdef COMPILEDWITHC11
+    std::chrono::steady_clock::time_point timeStartGeoBoW = std::chrono::steady_clock::now();
+#else
+    std::chrono::monotonic_clock::time_point timeStartGeoBoW = std::chrono::monotonic_clock::now();
+#endif*/
+
 /*#ifdef COMPILEDWITHC11
     std::chrono::steady_clock::time_point timeStartGeoBoW = std::chrono::steady_clock::now();
 #else
@@ -1456,7 +1462,7 @@ void LoopClosing::MergeLocal()
 
 
     //TODO Time test
-#ifdef COMPILEDWITHC11
+#ifdef COMPILEDWITHC14
     std::chrono::steady_clock::time_point timeStartTransfMerge = std::chrono::steady_clock::now();
 #else
     std::chrono::monotonic_clock::time_point timeStartTransfMerge = std::chrono::monotonic_clock::now();
@@ -1560,7 +1566,7 @@ void LoopClosing::MergeLocal()
         //pCurrentMap->EraseMapPoint(pMPi);
         //pMPi->UpdateNormalAndDepth();
     }
-#ifdef COMPILEDWITHC11
+#ifdef COMPILEDWITHC14
     std::chrono::steady_clock::time_point timeFinishTransfMerge = std::chrono::steady_clock::now();
 #else
     std::chrono::monotonic_clock::time_point timeFinishTransfMerge = std::chrono::monotonic_clock::now();
@@ -1570,7 +1576,7 @@ void LoopClosing::MergeLocal()
 
 
     //TODO Time test
-#ifdef COMPILEDWITHC11
+#ifdef COMPILEDWITHC14
     std::chrono::steady_clock::time_point timeStartCritMerge = std::chrono::steady_clock::now();
 #else
     std::chrono::monotonic_clock::time_point timeStartCritMerge = std::chrono::monotonic_clock::now();
@@ -1623,7 +1629,7 @@ void LoopClosing::MergeLocal()
         pMergeMap->ChangeId(pCurrentMap->GetId());
     }
 
-#ifdef COMPILEDWITHC11
+#ifdef COMPILEDWITHC14
     std::chrono::steady_clock::time_point timeFinishCritMerge = std::chrono::steady_clock::now();
 #else
     std::chrono::monotonic_clock::time_point timeFinishCritMerge = std::chrono::monotonic_clock::now();
@@ -1664,7 +1670,7 @@ void LoopClosing::MergeLocal()
 
 
     //TODO Time test
-#ifdef COMPILEDWITHC11
+#ifdef COMPILEDWITHC14
     std::chrono::steady_clock::time_point timeStartFuseMerge = std::chrono::steady_clock::now();
 #else
     std::chrono::monotonic_clock::time_point timeStartFuseMerge = std::chrono::monotonic_clock::now();
@@ -1675,7 +1681,7 @@ void LoopClosing::MergeLocal()
     // Fuse duplications.
     SearchAndFuse(vCorrectedSim3, vpCheckFuseMapPoint);
 
-#ifdef COMPILEDWITHC11
+#ifdef COMPILEDWITHC14
     std::chrono::steady_clock::time_point timeFinishFuseMerge = std::chrono::steady_clock::now();
 #else
     std::chrono::monotonic_clock::time_point timeFinishFuseMerge = std::chrono::monotonic_clock::now();
@@ -1903,7 +1909,7 @@ void LoopClosing::printReprojectionError(set<KeyFrame*> &spLocalWindowKFs, KeyFr
     for(KeyFrame* pKFi : spLocalWindowKFs)
     {
         //cout << "KF " << pKFi->mnId << endl;
-        cv::Mat img_i = cv::imread(pKFi->mNameFile, CV_LOAD_IMAGE_UNCHANGED);
+        cv::Mat img_i = cv::imread(pKFi->mNameFile, cv::IMREAD_UNCHANGED);
         //cout << "Image -> " << img_i.cols << ", " << img_i.rows << endl;
         cv::cvtColor(img_i, img_i, CV_GRAY2BGR);
         //cout << "Change of color in the image " << endl;

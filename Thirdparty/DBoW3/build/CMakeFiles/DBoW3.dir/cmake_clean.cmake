@@ -1,14 +1,22 @@
 file(REMOVE_RECURSE
+  "/root/Programs/Ms-Deep_SLAM/Thirdparty/DBoW3/lib/libDBoW3.pdb"
+  "/root/Programs/Ms-Deep_SLAM/Thirdparty/DBoW3/lib/libDBoW3.so"
   "CMakeFiles/DBoW3.dir/src/BowVector.cpp.o"
+  "CMakeFiles/DBoW3.dir/src/BowVector.cpp.o.d"
   "CMakeFiles/DBoW3.dir/src/Database.cpp.o"
+  "CMakeFiles/DBoW3.dir/src/Database.cpp.o.d"
   "CMakeFiles/DBoW3.dir/src/DescManip.cpp.o"
-  "CMakeFiles/DBoW3.dir/src/QueryResults.cpp.o"
-  "CMakeFiles/DBoW3.dir/src/quicklz.c.o"
+  "CMakeFiles/DBoW3.dir/src/DescManip.cpp.o.d"
   "CMakeFiles/DBoW3.dir/src/FeatureVector.cpp.o"
+  "CMakeFiles/DBoW3.dir/src/FeatureVector.cpp.o.d"
+  "CMakeFiles/DBoW3.dir/src/QueryResults.cpp.o"
+  "CMakeFiles/DBoW3.dir/src/QueryResults.cpp.o.d"
   "CMakeFiles/DBoW3.dir/src/ScoringObject.cpp.o"
+  "CMakeFiles/DBoW3.dir/src/ScoringObject.cpp.o.d"
   "CMakeFiles/DBoW3.dir/src/Vocabulary.cpp.o"
-  "../lib/libDBoW3.pdb"
-  "../lib/libDBoW3.so"
+  "CMakeFiles/DBoW3.dir/src/Vocabulary.cpp.o.d"
+  "CMakeFiles/DBoW3.dir/src/quicklz.c.o"
+  "CMakeFiles/DBoW3.dir/src/quicklz.c.o.d"
 )
 
 # Per-language clean rules from dependency scanning.
